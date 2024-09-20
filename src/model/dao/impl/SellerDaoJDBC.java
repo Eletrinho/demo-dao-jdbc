@@ -48,16 +48,9 @@ public class SellerDaoJDBC implements SellerDao {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             if (rs.next()){
-                Department dp = new Department(rs.getInt("DepartmentId"),
-                        rs.getString("DepName"));
+                return instantiateSeller(rs, instantiateDepartment(rs));
+            } return null;
 
-                return new Seller(rs.getInt("Id"),
-                        rs.getString("Name"),
-                        rs.getString("Email"),
-                        rs.getDate("BirthDate").toLocalDate(),
-                        rs.getDouble("BaseSalary"),
-                        dp);}
-            return null;
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
@@ -78,15 +71,7 @@ public class SellerDaoJDBC implements SellerDao {
             rs = ps.executeQuery();
             List<Seller> sellers = new ArrayList<>();
             while (rs.next()){
-                Department dp = new Department(rs.getInt("DepartmentId"),
-                        rs.getString("DepName"));
-
-                 sellers.add(new Seller(rs.getInt("Id"),
-                        rs.getString("Name"),
-                        rs.getString("Email"),
-                        rs.getDate("BirthDate").toLocalDate(),
-                        rs.getDouble("BaseSalary"),
-                        dp));
+                sellers.add(instantiateSeller(rs, instantiateDepartment(rs)));
             } return sellers;
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
@@ -94,5 +79,21 @@ public class SellerDaoJDBC implements SellerDao {
             DB.closeResult(rs);
             DB.closeStatment(ps);
         }
+    }
+
+    private Department instantiateDepartment(ResultSet rs) throws SQLException{
+        return new Department(
+                rs.getInt("DepartmentId"),
+                rs.getString("DepName"));
+    }
+
+    private Seller instantiateSeller(ResultSet rs, Department dp) throws SQLException {
+        return new Seller(
+                rs.getInt("Id"),
+                rs.getString("Name"),
+                rs.getString("Email"),
+                rs.getDate("BirthDate").toLocalDate(),
+                rs.getDouble("BaseSalary"),
+                dp);
     }
 }
