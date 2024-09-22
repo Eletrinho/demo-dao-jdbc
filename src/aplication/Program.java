@@ -16,11 +16,19 @@ public class Program {
 //        System.out.println(seller);
 
         SellerDao sellerDao = DaoFactory.createSellerDao();
-
+        System.out.println("Search All:");
         List<Seller> sellers = sellerDao.finAll();
-        System.out.println(sellers);
+        sellers.forEach(System.out::println);
+
+        System.out.println("\nSearch by Id:");
         Seller seller = sellerDao.findById(3);
         System.out.println(seller);
+
+        System.out.println("\nSearch by Department:");
+        Department obj = new Department(2, null);
+        List<Seller> sellers1 = sellerDao.findByDepartment(obj);
+        sellers1.forEach(System.out::println);
+        
         DB.closeConnection();
     }
 }
