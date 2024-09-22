@@ -11,10 +11,6 @@ import java.util.List;
 
 public class Program {
     public static void main(String[] args) {
-//        Department obj = new Department(1, "Books");
-//        Seller seller = new Seller(21, "Bob", "bob@gmail.com", LocalDate.now(), 3000d, obj);
-//        System.out.println(seller);
-
         SellerDao sellerDao = DaoFactory.createSellerDao();
         System.out.println("Search All:");
         List<Seller> sellers = sellerDao.finAll();
@@ -25,10 +21,15 @@ public class Program {
         System.out.println(seller);
 
         System.out.println("\nSearch by Department:");
-        Department obj = new Department(2, null);
-        List<Seller> sellers1 = sellerDao.findByDepartment(obj);
+        Department dep = new Department(2, null);
+        List<Seller> sellers1 = sellerDao.findByDepartment(dep);
         sellers1.forEach(System.out::println);
-        
+
+        System.out.println("\nInsert Test: ");
+        Seller seller1 = new Seller(21, "Bob", "bob2@gmail.com", LocalDate.now().minusYears(35), 3000d, dep);
+        sellerDao.insert(seller1);
+        System.out.println("Sucesso!");
+
         DB.closeConnection();
     }
 }
