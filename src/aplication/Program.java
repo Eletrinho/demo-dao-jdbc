@@ -26,9 +26,17 @@ public class Program {
         sellers1.forEach(System.out::println);
 
         System.out.println("\nInsert Test: ");
-        Seller seller1 = new Seller(21, "Bob", "bob2@gmail.com", LocalDate.now().minusYears(35), 3000d, dep);
-        sellerDao.insert(seller1);
+//        Seller seller1 = new Seller(null, "Bob", "bob2@gmail.com", LocalDate.now().minusYears(35), 3000d, dep);
+//        sellerDao.insert(seller1);
         System.out.println("Sucesso!");
+
+        System.out.println("\nUpdate Test:");
+        seller.setName("Mônica");
+        seller.setBaseSalary(20000d);
+        seller.setEmail("monica@gmail.com");
+        seller.setDepartment(dep);
+        sellerDao.update(seller);
+        System.out.println("User " + seller.getId() + " Atualizado");
 
         DB.closeConnection();
     }
