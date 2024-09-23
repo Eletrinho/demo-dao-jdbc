@@ -26,7 +26,7 @@ public class Program {
         sellers1.forEach(System.out::println);
 
         System.out.println("\nInsert Test: ");
-//        Seller seller1 = new Seller(null, "Bob", "bob2@gmail.com", LocalDate.now().minusYears(35), 3000d, dep);
+//        Seller seller1 = new Seller(null, "Bob", "bob1@gmail.com", LocalDate.now().minusYears(35), 3000d, dep);
 //        sellerDao.insert(seller1);
         System.out.println("Sucesso!");
 
@@ -38,6 +38,9 @@ public class Program {
         sellerDao.update(seller);
         System.out.println("User " + seller.getId() + " Atualizado");
 
+        System.out.println("\nDelete Test:");
+        sellerDao.deleteById(22);
+        System.out.println("Last user deleted.");
         DB.closeConnection();
     }
 }
