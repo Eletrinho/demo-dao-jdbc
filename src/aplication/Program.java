@@ -6,7 +6,6 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class Program {

@@ -23,7 +23,7 @@ public class DB {
     }
 
     public static void closeConnection() {
-        if (conn != null){
+        if (conn != null) {
             try {
                 conn.close();
             } catch (SQLException e) {
@@ -41,6 +41,7 @@ public class DB {
             }
         }
     }
+
     public static void closeResult(ResultSet rs) {
         if (rs != null) {
             try {
@@ -52,7 +53,7 @@ public class DB {
     }
 
     private static Properties loadProperties() {
-        try (FileInputStream fs = new FileInputStream("db.properties")){
+        try (FileInputStream fs = new FileInputStream("db.properties")) {
             Properties props = new Properties();
             props.load(fs);
             return props;

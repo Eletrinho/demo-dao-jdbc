@@ -1,0 +1,77 @@
+[33mcommit 3125fafc7eb3f50eec2f13d336a796e8efcf2c69[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Cauã <cauacustodiopereira@gmail.com>
+Date:   Mon Sep 23 13:27:07 2024 -0300
+
+    DepartmentDao implementation
+
+[33mcommit 59dacbffd39a63d03588d84da09bfce33a0ed692[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Cauã <cauacustodiopereira@gmail.com>
+Date:   Sun Sep 22 12:59:55 2024 -0300
+
+    Update implementation
+
+[33mcommit 62bc799172d1ddb8400b2401a851d42354d0c201[m
+Author: Cauã <cauacustodiopereira@gmail.com>
+Date:   Sun Sep 22 12:26:58 2024 -0300
+
+    Insert implementation
+
+[33mcommit c8f62dc2adf5647479346ffe8fd6331e64c01c3d[m
+Author: Cauã <cauacustodiopereira@gmail.com>
+Date:   Sun Sep 22 11:40:46 2024 -0300
+
+    findByDepartment implementation
+
+[33mcommit 94234c9dc7a009e7e059414fc0dbf02f26adb448[m
+Author: Cauã <cauacustodiopereira@gmail.com>
+Date:   Fri Sep 20 14:55:00 2024 -0300
+
+    Reusing instantiation
+
+[33mcommit 858dde9af74ac531ed959301a319d82edc0d4184[m
+Author: Cauã <cauacustodiopereira@gmail.com>
+Date:   Fri Sep 20 14:44:19 2024 -0300
+
+    findById & findAll implementation
+
+[33mcommit 3c2f77fc02657273afb24e33aae3d5f45d3bf3e6[m
+Author: Cauã <cauacustodiopereira@gmail.com>
+Date:   Fri Sep 20 13:51:59 2024 -0300
+
+    SellerDaoJDBC & DaoFactory created
+
+[33mcommit c72f20cedc41dcbd6824567b7e0f7d8b85b8d8d3[m
+Author: Cauã <cauacustodiopereira@gmail.com>
+Date:   Fri Sep 20 13:48:11 2024 -0300
+
+    Daos created
+
+[33mcommit f08f1c0e21903b2e1d97f68f3ac068a0f9297385[m
+Author: Cauã <cauacustodiopereira@gmail.com>
+Date:   Fri Sep 20 13:42:01 2024 -0300
+
+    Seller class created
+
+[33mcommit 66291cef94e3d6a5cb299b77222ffe892c7bcabc[m
+Author: Cauã <cauacustodiopereira@gmail.com>
+Date:   Fri Sep 20 13:41:26 2024 -0300
+
+    Seller class created
+
+[33mcommit 3736540167c5fd632568c19a3109b2f8c0f4059a[m
+Author: Cauã <cauacustodiopereira@gmail.com>
+Date:   Fri Sep 20 13:37:21 2024 -0300
+
+    Department class created
+
+[33mcommit e0667be8098a7d705fbd0e25618e0673f526dcad[m
+Author: Cauã <cauacustodiopereira@gmail.com>
+Date:   Fri Sep 20 12:28:18 2024 -0300
+
+    Initial commit
+
+[33mcommit 0295dd94dee54f1523a822c8de268bc09595d85d[m
+Author: Cauã <101751692+Eletrinho@users.noreply.github.com>
+Date:   Fri Sep 20 11:52:31 2024 -0300
+
+    Initial commit

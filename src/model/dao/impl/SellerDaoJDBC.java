@@ -29,7 +29,7 @@ public class SellerDaoJDBC implements SellerDao {
                                 + "(Name, Email, BirthDate, BaseSalary, DepartmentId) "
                                 + "VALUES "
                                 + "(?, ?, ?, ?, ?)",
-                                Statement.RETURN_GENERATED_KEYS);
+                        Statement.RETURN_GENERATED_KEYS);
                 ps.setString(1, obj.getName());
                 ps.setString(2, obj.getEmail());
                 ps.setDate(3, Date.valueOf(obj.getBirthDate()));
@@ -37,14 +37,18 @@ public class SellerDaoJDBC implements SellerDao {
                 ps.setInt(5, obj.getDepartment().getId());
 
                 int rows = ps.executeUpdate();
-                if (rows > 0){
+                if (rows > 0) {
                     ResultSet rs = ps.getGeneratedKeys();
                     if (rs.next()) {
                         obj.setId(rs.getInt(1));
                     }
                     DB.closeResult(rs);
-                } else { throw new DbException("Erro inesperado");}
-            } else {throw new DbException("Esse email já existe");}
+                } else {
+                    throw new DbException("Erro inesperado");
+                }
+            } else {
+                throw new DbException("Esse email já existe");
+            }
 
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
@@ -59,8 +63,8 @@ public class SellerDaoJDBC implements SellerDao {
         try {
             ps = conn.prepareStatement(
                     "UPDATE seller "
-                        + "SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ? "
-                        + "WHERE Id = ?");
+                            + "SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ? "
+                            + "WHERE Id = ?");
 
             ps.setString(1, obj.getName());
             ps.setString(2, obj.getEmail());
@@ -100,14 +104,15 @@ public class SellerDaoJDBC implements SellerDao {
         try {
             ps = conn.prepareStatement(
                     "SELECT seller.*,department.Name as DepName "
-                    + "FROM seller INNER JOIN department "
-                    + "ON seller.DepartmentId = department.Id "
-                    + "WHERE seller.Id = ? ");
+                            + "FROM seller INNER JOIN department "
+                            + "ON seller.DepartmentId = department.Id "
+                            + "WHERE seller.Id = ? ");
             ps.setInt(1, id);
             rs = ps.executeQuery();
-            if (rs.next()){
+            if (rs.next()) {
                 return instantiateSeller(rs, instantiateDepartment(rs));
-            } return null;
+            }
+            return null;
 
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
@@ -129,14 +134,15 @@ public class SellerDaoJDBC implements SellerDao {
             rs = ps.executeQuery();
             List<Seller> sellers = new ArrayList<>();
             Map<Integer, Department> map = new HashMap<>();
-            while (rs.next()){
+            while (rs.next()) {
                 Department dep = map.get(rs.getInt("DepartmentId"));
                 if (dep == null) {
                     dep = instantiateDepartment(rs);
                     map.put(rs.getInt("DepartmentId"), dep);
                 }
                 sellers.add(instantiateSeller(rs, instantiateDepartment(rs)));
-            } return sellers;
+            }
+            return sellers;
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
@@ -160,14 +166,15 @@ public class SellerDaoJDBC implements SellerDao {
             rs = ps.executeQuery();
             List<Seller> sellers = new ArrayList<>();
             Map<Integer, Department> map = new HashMap<>();
-            while (rs.next()){
+            while (rs.next()) {
                 Department dep = map.get(rs.getInt("DepartmentId"));
                 if (dep == null) {
                     dep = instantiateDepartment(rs);
                     map.put(rs.getInt("DepartmentId"), dep);
                 }
                 sellers.add(instantiateSeller(rs, instantiateDepartment(rs)));
-            } return sellers;
+            }
+            return sellers;
 
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
@@ -189,9 +196,10 @@ public class SellerDaoJDBC implements SellerDao {
                             + "WHERE seller.Email = ? ");
             ps.setString(1, email);
             rs = ps.executeQuery();
-            if (rs.next()){
+            if (rs.next()) {
                 return instantiateSeller(rs, instantiateDepartment(rs));
-            } return null;
+            }
+            return null;
 
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
@@ -200,7 +208,8 @@ public class SellerDaoJDBC implements SellerDao {
             DB.closeStatment(ps);
         }
     }
-    private Department instantiateDepartment(ResultSet rs) throws SQLException{
+
+    private Department instantiateDepartment(ResultSet rs) throws SQLException {
         return new Department(
                 rs.getInt("DepartmentId"),
                 rs.getString("DepName"));

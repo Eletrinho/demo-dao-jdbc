@@ -5,7 +5,10 @@ import db.DbException;
 import model.dao.DepartmentDao;
 import model.entities.Department;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +55,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
     public void deleteById(Integer id) {
         PreparedStatement ps = null;
         try {
-            ps = conn.prepareStatement("DELETE department WHERE Id = ?");
+            ps = conn.prepareStatement("DELETE FROM department WHERE Id = ?");
 
             ps.setInt(1, id);
             ps.executeUpdate();
@@ -73,9 +76,10 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
             ps.setInt(1, id);
             rs = ps.executeQuery();
-            if (rs.next()){
+            if (rs.next()) {
                 return instantiateDepartment(rs);
-            } return null;
+            }
+            return null;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -94,9 +98,10 @@ public class DepartmentDaoJDBC implements DepartmentDao {
             ps = conn.prepareStatement("SELECT * FROM department");
 
             rs = ps.executeQuery();
-            if (rs.next()){
+            while (rs.next()) {
                 departments.add(instantiateDepartment(rs));
-            } return departments;
+            }
+            return departments;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -106,9 +111,9 @@ public class DepartmentDaoJDBC implements DepartmentDao {
         }
     }
 
-    private Department instantiateDepartment(ResultSet rs) throws SQLException{
+    private Department instantiateDepartment(ResultSet rs) throws SQLException {
         return new Department(
-                rs.getInt("DepartmentId"),
-                rs.getString("DepName"));
+                rs.getInt("Id"),
+                rs.getString("Name"));
     }
 }
